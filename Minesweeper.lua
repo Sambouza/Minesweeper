@@ -27,54 +27,51 @@ local function get_coord(coord)
 	return position, number, mode
 end
 local function recursive_reveal()
-	local stop_reveal = false
-	while true do
-		if stop_reveal == false then
+	for k=1, grid_size do
+		while true do
 			local control_grid = grid
-			
+				
 			for i=1, grid_size do
 				for j=1, grid_size do
 					if grid[i][j].revealed == true then
-						for k=1, grid_size do --to make sure everything is indexed?
-							if grid[i-1] ~= nil and grid[i-1][j-1] ~= nil then --Top Left
-								if grid[i-1][j-1].mine == false then
-									grid[i-1][j-1].revealed = true
-								end
+						if grid[i-1] ~= nil and grid[i-1][j-1] ~= nil then --Top Left
+							if grid[i-1][j-1].mine == false then
+								grid[i-1][j-1].revealed = true
 							end
-							if grid[i-1] ~= nil and grid[i-1][j] ~= nil then --Top
-								if grid[i-1][j].mine == false then
-									grid[i-1][j].revealed = true
-								end
+						end
+						if grid[i-1] ~= nil and grid[i-1][j] ~= nil then --Top
+							if grid[i-1][j].mine == false then
+								grid[i-1][j].revealed = true
 							end
-							if grid[i-1] ~= nil and grid[i-1][j+1] ~= nil then --Top Right
-								if grid[i-1][j+1].mine == false then
-									grid[i-1][j+1].revealed = true
-								end
+						end
+						if grid[i-1] ~= nil and grid[i-1][j+1] ~= nil then --Top Right
+							if grid[i-1][j+1].mine == false then
+								grid[i-1][j+1].revealed = true
 							end
-							if grid[i] ~= nil and grid[i][j-1] ~= nil then --Left
-								if grid[i][j-1].mine == false then
-									grid[i][j-1].revealed = true
-								end
+						end
+						if grid[i] ~= nil and grid[i][j-1] ~= nil then --Left
+							if grid[i][j-1].mine == false then
+								grid[i][j-1].revealed = true
 							end
-							if grid[i] ~= nil and grid[i][j+1] ~= nil then --Right
-								if grid[i][j+1].mine == false then
-									grid[i][j+1].revealed = true
-								end
+						end
+						if grid[i] ~= nil and grid[i][j+1] ~= nil then --Right
+							if grid[i][j+1].mine == false then
+								grid[i][j+1].revealed = true
 							end
-							if grid[i+1] ~= nil and grid[i+1][j-1] ~= nil then --Bottom Left
-								if grid[i+1][j-1].mine == false then
-									grid[i+1][j-1].revealed = true
-								end
+						end
+						if grid[i+1] ~= nil and grid[i+1][j-1] ~= nil then --Bottom Left
+							if grid[i+1][j-1].mine == false then
+								grid[i+1][j-1].revealed = true
 							end
-							if grid[i+1] ~= nil and grid[i+1][j] ~= nil then --Bottom
-								if grid[i+1][j].mine == false then
-									grid[i+1][j].revealed = true
-								end
+						end
+						if grid[i+1] ~= nil and grid[i+1][j] ~= nil then --Bottom
+							if grid[i+1][j].mine == false then
+								grid[i+1][j].revealed = true
 							end
-							if grid[i+1] ~= nil and grid[i+1][j+1] ~= nil then --Bottom Right
-								if grid[i+1][j+1].mine == false then
-									grid[i+1][j+1].revealed = true
-								end
+						end
+						if grid[i+1] ~= nil and grid[i+1][j+1] ~= nil then --Bottom Right
+							if grid[i+1][j+1].mine == false then
+								grid[i+1][j+1].revealed = true
 							end
 						end
 					end
@@ -82,10 +79,8 @@ local function recursive_reveal()
 			end
 			
 			if control_grid == grid then
-				stop_reveal = true
+				break
 			end
-		else
-			break
 		end
 	end
 end
